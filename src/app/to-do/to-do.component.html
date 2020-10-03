@@ -5,32 +5,29 @@
     <div class="col-md-4">
       <form>
         <div class="form-group">
-          <div class="col">
-            <input type="text" class="form-control" name="id" placeholder="Id">
+          <div class="col mb-2">
+            <input #titleBox [(ngModel)]="toDoObj.title" type="text" class="form-control" placeholder="Title" name="tite">
+          </div>
+          <div class="col my-2">
+            <input #descBox [(ngModel)]="toDoObj.desc" type="text" class="form-control" placeholder="Description" name="desc">
+          </div>
+          <div class="col my-2">  
+            <input #startBox [(ngModel)]="toDoObj.start" type="text" class="form-control" placeholder="Start Date" name="start">
           </div>
           <div class="col">
-            <input #titleBox type="text" class="form-control" placeholder="Title" name="tite">
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Description" name="desc">
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Start Date" name="start">
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="End Date" name="end">
+            <input #endBox [(ngModel)]="toDoObj.end" type="text" class="form-control" placeholder="End Date" name="end">
           </div>
         </div>
-        <div class="text-center"> <button (click)="toDoObj.add()" class="btn btn-success mr-3" id="addBtn">Add</button>
-          <button (click)="toDoObj.reset(titleBox.value)" class="btn btn-success mr-3" id="updateBtn">Reset</button>
+        <div class="text-center"> <button (click)="toDoObj.add(titleBox.value, descBox.value, startBox.value, endBox.value)" class="btn btn-success mr-3" id="addBtn">Add</button>
+          
         </div>
 
       </form>
     </div>
     <div class="col-md-8">
 
-      <table class="table table-hover table-dark">
-        <thead>
+      <table class="table table-hover">
+        <thead class="table-dark">
           <tr>
             <th scope="col">id</th>
             <th scope="col">title</th>
@@ -40,13 +37,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of this.toDoObj.toDoList">
-            <th scope="row">{{data.id}}</th>
+          <tr *ngFor="let data of this.toDoObj.toDoList; let id=index">
             <td>{{data.title}}</td>
             <td>{{data.desc}}</td>
             <td>{{data.start}}</td>
             <td>{{data.end}}</td>
-            <td><button (click)="toDoObj.delete(data.id)" class="btn btn-danger" id="deleteBtn">Delete</button></td>
+            <td>
+              <button (click)="toDoObj.delete(id)" class="btn btn-outline-danger mr-2" id="deleteBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              <button (click)="toDoObj.update(id)" class="btn btn-outline-primary" id="deleteBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            </td>
           </tr>
         </tbody>
       </table>
