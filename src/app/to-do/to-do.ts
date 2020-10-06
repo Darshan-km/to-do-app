@@ -36,7 +36,7 @@ export class ToDo {
       });
     this.emptyInputFields();  
     this.display();
-    
+    return  this.toDoList.length;
   }
 
   // Update new data to  "To do to list".
@@ -54,7 +54,7 @@ export class ToDo {
   }
 
   // Delete object from to do list 
-  public delete(id) {
+  public delete(id:number) {
     this.toDoList.splice(id, 1);
     this.display();
   }

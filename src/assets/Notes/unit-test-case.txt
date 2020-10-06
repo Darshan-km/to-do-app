@@ -1,0 +1,5 @@
+Target Inner HTML    
+
+expect (fixture.nativeElement.querySelector('h2').textContent).toContain("To Do application")
+expect (fixture.debugElement.nativeElement.querySelector('h2').textContent).toContain("To Do application");
+expect(fixture.debugElement.query(By.css("h2")).nativeElement.textContent).toContain("To Do application")
